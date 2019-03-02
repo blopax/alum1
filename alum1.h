@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 13:06:33 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 14:23:19 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ALUM1_H
 
 # include <fcntl.h>
+# include <stdlib.h>
 
 int		*ft_get_board(int fd);
 

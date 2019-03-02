@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:56:57 by pclement          #+#    #+#             */
-/*   Updated: 2019/03/02 14:29:59 by pclement         ###   ########.fr       */
+/*   Updated: 2019/03/02 15:15:32 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,23 @@ int	*ft_get_strat(int *board)
 	return (winning_strat);
 }
 
-int	*ft_resolve_board(int *board)
+int	*ft_resolve_turn(int *board, int *winning_strat)
 {
+	int i;
+	int number_matches_line;
+	int pick_line_last_match;
+	int modulo_last_line;
+
+	i = 0;
+	while (board[i] > 0)
+		i++;
+	pick_line_last_match = winning_strat[i];
+	modulo_last_line = board[i] % 4;
+	if (pick_line_last_match == 0 && modulo_last_line != 1)
+		board[i] -= (modulo_last_line + 3) % 4;
+	else if (pick_line_last_match == 1 && modulo_last_line != 0)
+		board[i] -= modulo_last_line;
+	else
+		board[i] -= 1;
 	return (board);
 }

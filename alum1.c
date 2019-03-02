@@ -6,108 +6,105 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:07 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 16:03:08 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:45:09 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alum1.h"
 
-static int	ft_get_fd(int ac, char **av)
+static int	ft_robot_first(int *board, int *winning_strat, char *input)
 {
-	if (ac > 2)
-		return (-1);
-	else if (ac == 1)
-		return (0);
+	t_bool	winner;
+
+	while (1)
+	{
+		ft_putstr("My turn to play\n");
+		ft_print_board(board);
+		ft_resolve_turn(board, winning_strat);
+		winner = FALSE;
+		if (board[0] == 0)
+			break ;
+		ft_putstr("Your turn to play. Pick some matches on the last line\n");
+		ft_print_board(board);
+		get_next_line(0, &input);
+		while (ft_parse_play(board, input) == FALSE)
+		{
+			ft_memdel((void**)&input);
+			get_next_line(0, &input);
+		}
+		ft_actualise_board(board, ft_atoi(input));
+		ft_memdel((void**)&input);
+		winner = TRUE;
+		if (board[0] == 0)
+			break ;
+	}
+	return (winner);
+}
+
+static int	ft_human_first(int *board, int *winning_strat, char *input)
+{
+	t_bool	winner;
+
+	while (1)
+	{
+		ft_putstr("Your turn to play. Pick some matches on the last line\n");
+		ft_print_board(board);
+		get_next_line(0, &input);
+		while (ft_parse_play(board, input) == FALSE)
+		{
+			ft_memdel((void**)&input);
+			get_next_line(0, &input);
+		}
+		ft_actualise_board(board, ft_atoi(input));
+		ft_memdel((void**)&input);
+		winner = TRUE;
+		if (board[0] == 0)
+			break ;
+		ft_putstr("My turn to play\n");
+		ft_print_board(board);
+		ft_resolve_turn(board, winning_strat);
+		winner = FALSE;
+		if (board[0] == 0)
+			break ;
+	}
+	return (winner);
+}
+
+static void	ft_victory(int winner, int *board, int *winning_strat)
+{
+	ft_memdel((void**)&board);
+	ft_memdel((void**)&winning_strat);
+	if (winner == TRUE)
+		write(1, "alum1 won\n", 10);
 	else
-		return (open(av[1], O_RDONLY));
-}
-
-static t_bool	ft_parse_play(int *board, char *str)
-{
-	int i;
-
-	if (ft_strlen(str) != 1)
-		return (FALSE);
-	if (str[0] != '1' && str[0] != '2' && str[0] != '3')
-		return (FALSE);
-	i = 0;
-	while (board[i] != 0)
-		i++;
-	if (str[0] - '0' > board[--i])
-		return (FALSE);
-	return (TRUE);
-}
-
-static void ft_actualise_board(int *board, int play)
-{
-	int i;
-
-	i = 0;
-	while (board[i] != 0)
-		i++;
-	board[--i] -= play;
+		write(1, "human won\n",10);
 }
 
 int	main(int ac, char **av)
 {
 	int		fd;
 	int		*board;
-	char	*play;
-	t_bool	winner;
+	char	*input;
 	int		*winning_strat;
+	int		player_to_start;
 	
-	printf("=== start ===\n");
 	if ((fd = ft_get_fd(ac, av)) == -1)
-	{
-		write(1, "ERROR\n", 6);
-		return (-1);
-	}
-	printf("=== get_fd ===\n");
+		return (ft_error(1, NULL, -1));
 	if ((board = ft_get_board(fd)) == NULL)
-	{
-		write(1, "ERROR\n", 6);
-		if (fd != 0)
-			close(fd);
-		return (-1);
-	}
-	printf("=== get_board ===\n");
+		return (ft_error(2, NULL, fd));
 	if (!(winning_strat = ft_get_strat(board)))
+		return (ft_error(3, board, fd));
+	ft_putstr("Do you want to play first or second ?\n");
+	get_next_line(0, &input);
+	while ((player_to_start = ft_parse_player(input)) == 0)
 	{
-		ft_memdel((void**)&board);
-		return (-1);
+		ft_memdel((void**)&input);
+		get_next_line(0, &input);
 	}
-	print_get_strat(winning_strat);
-	play = NULL;
-	while (1)
-	{
-		printf("=== new_turn ===\n");
-		ft_print_board(board);
-		get_next_line(0, &play);
-		while (ft_parse_play(board, play) == FALSE)
-		{
-			ft_memdel((void**)&play);
-			get_next_line(0, &play);
-		}
-		ft_actualise_board(board, ft_atoi(play));
-		ft_memdel((void**)&play);
-		winner = TRUE;
-		printf("=== turn_human ===\n");
-		if (board[0] == 0)
-			break ;
-		ft_print_board(board);
-		ft_resolve_turn(board, winning_strat);
-		winner = FALSE;
-		printf("=== turn_robot===\n");
-		if (board[0] == 0)
-			break ;
-	}
-	ft_memdel((void**)&board);
-	ft_memdel((void**)&winning_strat);
-	while (1)
-		;
-	if (winner == TRUE)
-		write(1, "alum1 won\n", 10);
+	ft_memdel((void**)&input);
+	if (player_to_start == 1)
+		ft_victory(ft_human_first(board, winning_strat, input), board, winning_strat);
 	else
-		write(1, "human won\n",10);
+		ft_victory(ft_robot_first(board, winning_strat, input), board, winning_strat);
 	return (1);
 }

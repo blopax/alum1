@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 16:03:07 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:22:53 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	*ft_get_board(int fd)
 	i = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
+		if (fd == 0 && *line == '\0')
+			break;
 		if (ft_parse_line(line) == FALSE)
 		{
 			ft_memdel((void**)&board);
@@ -68,7 +70,18 @@ int	*ft_get_board(int fd)
 		if (i == size)
 			board = ft_resize_board(board, &size);
 		board[i++] = ft_atoi(line);
+		ft_memdel((void**)&line);
 	}
 	ft_memdel((void**)&line);
 	return (board);
+}
+
+void ft_actualise_board(int *board, int play)
+{
+	int i;
+
+	i = 0;
+	while (board[i] != 0)
+		i++;
+	board[--i] -= play;
 }

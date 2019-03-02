@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/11 16:41:02 by tdelabro          #+#    #+#             */
+/*   Updated: 2019/02/08 14:48:58 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
-
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n >= 0 && n <= 9)
+		ft_putchar_fd(n + 48, fd);
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		if (n == INT_MIN)
+		{
+			ft_putchar_fd('2', fd);
+			ft_putnbr_fd(147483648, fd);
+		}
+		else
+			ft_putnbr_fd(-1 * n, fd);
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + 48, fd);
+	}
+}

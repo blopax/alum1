@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/09 22:01:50 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 22:49:26 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+char	*ft_strnew(size_t size)
+{
+	char	*str;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	if ((str = (char*)malloc(sizeof(char) * size + 1)) == NULL)
+		return (NULL);
+	while (1 + size--)
+		str[1 + size] = '\0';
+	return (str);
+}

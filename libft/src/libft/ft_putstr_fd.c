@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/11 16:31:22 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/18 15:03:24 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+void	ft_putstr_fd(const char *s, int fd)
+{
+	int i;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	if (s)
+	{
+		i = 0;
+		while (s[i])
+			i++;
+		write(fd, s, i);
+	}
+}

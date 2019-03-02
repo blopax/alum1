@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 13:09:42 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 14:54:25 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	*ft_resize_board(int *board, int *size)
 	int i;
 
 	*size *= 2;
-	if (!(tmp = ft_memalloc(sizeof(int) * (size + 1))))
+	if (!(tmp = ft_memalloc(sizeof(int) * (*size + 1))))
 		return (NULL);
 	i = -1;
 	while (board[++i] != 0)
@@ -35,7 +35,7 @@ static t_bool	ft_parse_line(char *str)
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
-			return (FALSE)
+			return (FALSE);
 		i++;
 	}
 	i = 0;

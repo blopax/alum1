@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 13:41:03 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 14:45:21 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	size_t i;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	i = 0;
+	while (src[i] && i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (i != len)
+	{
+		while (i < len)
+		{
+			dst[i] = '\0';
+			i++;
+		}
+	}
+	return (dst);
+}

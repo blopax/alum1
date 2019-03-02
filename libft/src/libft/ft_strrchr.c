@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 14:41:01 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 18:51:22 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+	int		pos;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	pos = -1;
+	i = 0;
+	if ((char)c == '\0')
+		return (&((char*)s)[ft_strlen(s)]);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			pos = i;
+		i++;
+	}
+	if (pos == -1)
+		return (NULL);
+	else
+		return (&((char*)s)[pos]);
+}

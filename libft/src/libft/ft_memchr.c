@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/09 13:07:48 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/14 18:51:30 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	void	*cur;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	cur = (void*)s;
+	while (n--)
+	{
+		if (*(unsigned char*)cur == (unsigned char)c)
+			return (cur);
+		cur++;
+	}
+	return (NULL);
+}

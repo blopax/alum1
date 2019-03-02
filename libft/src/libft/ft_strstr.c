@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_board.c                                   :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 13:05:49 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:04:13 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 14:53:27 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 19:06:18 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alum1.h"
+#include "../../inc/libft.h"
 
-static void ft_write_a_line(int size)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	char	str[size];
 	int		i;
+	int		j;
+	int		pos;
 
+	if (needle[0] == '\0')
+		return ((char*)haystack);
 	i = 0;
-	while (i < size)
+	j = 0;
+	while (haystack[i])
 	{
-		str[i] = '|';
+		if (haystack[i] == needle[j])
+		{
+			pos = i;
+			while (haystack[i + j] == needle[j] && needle[j] != '\0')
+				j++;
+			if (needle[j] == '\0')
+				return (&((char*)haystack)[pos]);
+			j = 0;
+		}
 		i++;
 	}
-	write(1, str, size);
-}
-
-void	ft_print_board(int *board)
-{
-	int i;
-
-	i = 0;
-	while (board[i] != 0)
-	{
-		ft_write_a_line(board[i]);
-		write(1, "\n", 1);
-		i++;
-	}
+	return (NULL);
 }

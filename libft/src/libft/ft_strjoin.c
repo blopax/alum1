@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/10 14:42:19 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/10 16:17:07 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	int		i;
+	int		j;
+	char	*str;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	if (s1 && s2)
+	{
+		if ((str = (char*)malloc(sizeof(char) * \
+						(ft_strlen(s1) + ft_strlen(s2) + 1))) == NULL)
+			return (NULL);
+		i = -1;
+		while (s1[++i])
+			str[i] = s1[i];
+		j = -1;
+		while (s2[++j])
+			str[i + j] = s2[j];
+		str[i + j] = '\0';
+		return (str);
+	}
+	return (NULL);
+}

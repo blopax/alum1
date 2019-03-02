@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 14:13:28 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/11 18:25:03 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	unsigned int	i;
+	unsigned int	j;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	i = 0;
+	j = 0;
+	if (size != 0)
+	{
+		while (dst[i] && i < size)
+			i++;
+		while (src[j] && j + i < size - 1)
+		{
+			dst[i + j] = src[j];
+			j++;
+		}
+		if (i + j < size)
+			dst[i + j] = '\0';
+	}
+	return (i + ft_strlen(src));
+}

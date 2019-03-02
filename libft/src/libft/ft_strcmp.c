@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 15:34:13 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 19:18:52 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int i;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return ((((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]));
+}

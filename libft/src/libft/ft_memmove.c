@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 14:57:16 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 17:55:42 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 21:13:46 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*pdst;
+	unsigned char	*psrc;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-
-#endif
+	pdst = (unsigned char*)dst;
+	psrc = (unsigned char*)src;
+	if (psrc < pdst)
+	{
+		pdst += len;
+		psrc += len;
+		while (len--)
+			*--pdst = *--psrc;
+	}
+	else
+		while (len--)
+			*pdst++ = *psrc++;
+	return (dst);
+}

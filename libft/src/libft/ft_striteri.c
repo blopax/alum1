@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:35:40 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/09 22:43:58 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/10 14:02:08 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int i;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-int		*ft_get_strat(int *board);
-void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
-
-#endif
+	i = 0;
+	if (s && f)
+	{
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
+	}
+}

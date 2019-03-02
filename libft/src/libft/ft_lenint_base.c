@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_lenint_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:35:40 by tdelabro         ###   ########.fr       */
+/*   Created: 2019/02/12 17:25:13 by tdelabro          #+#    #+#             */
+/*   Updated: 2019/02/18 16:06:12 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+unsigned short	ft_lenint_base(int n, unsigned short const b)
+{
+	unsigned short	len;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-int		*ft_get_strat(int *board);
-void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
-
-#endif
+	if (n == 0)
+		return (1);
+	len = 0;
+	while (n != 0)
+	{
+		n = n / b;
+		len++;
+	}
+	return (len);
+}

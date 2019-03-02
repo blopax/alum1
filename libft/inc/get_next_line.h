@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:35:40 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/14 15:50:53 by tdelabro          #+#    #+#             */
+/*   Updated: 2019/02/25 19:54:02 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+#include "libft.h"
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-int		*ft_get_strat(int *board);
-void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
+int					get_next_line(const int fd, char **line);
+
+typedef struct	s_fd
+{
+	char	*str;
+	char	*remain;
+	int		fd;
+	int		ret;
+}				t_fd;
 
 #endif

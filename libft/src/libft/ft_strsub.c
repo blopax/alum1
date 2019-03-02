@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:35:40 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/10 14:31:28 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/10 14:42:03 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+char	*ft_strsub(const char *s, unsigned int start, size_t len)
+{
+	char	*sub;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-int		*ft_get_strat(int *board);
-void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
-
-#endif
+	if ((sub = (char*)malloc(sizeof(char) * len + 1)) == NULL)
+		return (NULL);
+	if (s)
+	{
+		sub[len] = '\0';
+		while (len--)
+			sub[len] = s[start + len];
+	}
+	return (sub);
+}

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alum1.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:35:40 by tdelabro         ###   ########.fr       */
+/*   Created: 2018/11/08 17:23:05 by tdelabro          #+#    #+#             */
+/*   Updated: 2018/11/09 14:37:27 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALUM1_H
-# define ALUM1_H
+#include "../../inc/libft.h"
 
-# include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t i;
 
-int		*ft_get_board(int fd);
-void	ft_print_board(int *board);
-int		*ft_get_strat(int *board);
-void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
-
-#endif
+	i = 0;
+	while (i < len)
+	{
+		((unsigned char*)b)[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}

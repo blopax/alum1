@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:19:35 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 17:45:10 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:30:28 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ int	ft_parse_player(char *str)
 		ft_putstr("Please enter a correct value: [1/2]\n");
 		return (FALSE);
 	}
-	return (TRUE);
+	return (ft_atoi(str));
 }

@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 17:22:53 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:34:19 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	*ft_get_board(int fd)
 		ft_memdel((void**)&line);
 	}
 	ft_memdel((void**)&line);
-	return (board);
+	return ((board[0] != 0) ? board : NULL);
 }
 
 void ft_actualise_board(int *board, int play)

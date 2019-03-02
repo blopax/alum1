@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:07 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 18:17:47 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 19:38:11 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	ft_robot_first(int *board, int *winning_strat, char *input)
 
 	while (1)
 	{
-		ft_putstr("My turn to play\n");
+		ft_putstr("\nMy turn to play\n");
 		ft_print_board(board);
 		ft_resolve_turn(board, winning_strat);
 		winner = FALSE;
 		if (board[0] == 0)
 			break ;
-		ft_putstr("Your turn to play. Pick some matches on the last line\n");
+		ft_putstr("\nYour turn to play.\nPick some matches on the last line\n");
 		ft_print_board(board);
 		get_next_line(0, &input);
 		while (ft_parse_play(board, input) == FALSE)
@@ -47,7 +47,7 @@ static int	ft_human_first(int *board, int *winning_strat, char *input)
 
 	while (1)
 	{
-		ft_putstr("Your turn to play. Pick some matches on the last line\n");
+		ft_putstr("\nYour turn to play.\nPick some matches on the last line\n");
 		ft_print_board(board);
 		get_next_line(0, &input);
 		while (ft_parse_play(board, input) == FALSE)
@@ -60,7 +60,7 @@ static int	ft_human_first(int *board, int *winning_strat, char *input)
 		winner = TRUE;
 		if (board[0] == 0)
 			break ;
-		ft_putstr("My turn to play\n");
+		ft_putstr("\nMy turn to play\n");
 		ft_print_board(board);
 		ft_resolve_turn(board, winning_strat);
 		winner = FALSE;
@@ -106,5 +106,5 @@ int	main(int ac, char **av)
 		ft_victory(ft_human_first(board, winning_strat, input), board, winning_strat);
 	else
 		ft_victory(ft_robot_first(board, winning_strat, input), board, winning_strat);
-	return (1);
+	return (0);
 }

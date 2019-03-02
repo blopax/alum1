@@ -6,13 +6,13 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:56:57 by pclement          #+#    #+#             */
-/*   Updated: 2019/03/02 16:50:41 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:18:16 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alum1.h"
 
-int	*create_winning_strat_table(int *board)
+int		*create_winning_strat_table(int *board)
 {
 	int *winning_strat;
 	int len;
@@ -22,19 +22,18 @@ int	*create_winning_strat_table(int *board)
 	i = 0;
 	while (board[len] > 0)
 		len++;
-	len++;
-	if ((winning_strat = (int *)malloc(sizeof(int) * len)) == 0)
-		return (NULL); // clean exit free matches table
+	if ((winning_strat = (int *)malloc(sizeof(int) * (len + 1))) == 0)
+		return (NULL);
 	while (i < len)
 	{
 		winning_strat[i] = 0;
 		i++;
 	}
-	winning_strat[len - 1] = -1;
+	winning_strat[len] = -1;
 	return (winning_strat);
 }
 
-int	*ft_get_strat(int *board)
+int		*ft_get_strat(int *board)
 {
 	int *winning_strat;
 	int i;
@@ -43,6 +42,8 @@ int	*ft_get_strat(int *board)
 	int condition2;
 
 	winning_strat = create_winning_strat_table(board);
+	if (winning_strat == NULL)
+		return (NULL);
 	i = 0;
 	pick_last_match = 0;
 	while (board[i] > 0)
@@ -59,26 +60,15 @@ int	*ft_get_strat(int *board)
 	return (winning_strat);
 }
 
-void print_get_strat(int *winning_strat)
-{
-	int i;
-
-	i = 0;
-	while (winning_strat[i] >= 0)
-	{
-		ft_putnbr(winning_strat[i]);
-		write(1, " ", 1);
-		i++;
-	}
-}
-
-void ft_resolve_turn(int *board, int *winning_strat)
+void	ft_resolve_turn(int *board, int *winning_strat)
 {
 	int i;
 	int pick_line_last_match;
 	int modulo_last_line;
+	int human_can_win;
 
 	i = 0;
+	human_can_win = 0;
 	while (board[i] > 0)
 		i++;
 	i--;
@@ -89,5 +79,11 @@ void ft_resolve_turn(int *board, int *winning_strat)
 	else if (pick_line_last_match == 1 && modulo_last_line != 0)
 		board[i] -= modulo_last_line;
 	else
+	{
 		board[i] -= 1;
+		human_can_win = 1;
+	}
+	if (board[0] == 0)
+		human_can_win = 2;
+	ft_brag(human_can_win);
 }

@@ -1,0 +1,6 @@
+alum1
+.DS_Store
+a.out
+test
+**/obj
+libft/libft.a

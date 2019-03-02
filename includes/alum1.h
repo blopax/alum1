@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 17:45:13 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 18:16:58 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ int		*ft_get_board(int fd);
 void	ft_print_board(int *board);
 int		*ft_get_strat(int *board);
 void	ft_resolve_turn(int *board, int *winning_strat);
-void	print_get_strat(int * x);
 int		ft_get_fd(int ac, char **av);
 t_bool	ft_parse_play(int *board, char *s);
 int		ft_parse_player(char *str);
 int		ft_error(int code, int *board, int fd);
 void	ft_actualise_board(int *board, int play);
+void	print_get_strat(int *winning_strat);
+void	ft_brag(int human_can_win);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:07 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 16:15:58 by pclement         ###   ########.fr       */
+/*   Updated: 2019/03/02 16:21:55 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int ac, char **av)
 	play = NULL;
 	while (1)
 	{
-		printf("=== new_turn ===\n");
+		printf("\n=== new_turn ===\n");
 		ft_print_board(board);
 		get_next_line(0, &play);
 		while (ft_parse_play(board, play) == FALSE)

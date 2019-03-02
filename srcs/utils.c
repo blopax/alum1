@@ -6,11 +6,11 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 16:24:59 by pclement          #+#    #+#             */
-/*   Updated: 2019/03/02 16:56:13 by pclement         ###   ########.fr       */
+/*   Updated: 2019/03/02 17:37:23 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "alum1.h"
+#include "alum1.h"
 
 void	ft_brag(int human_can_win)
 {
@@ -19,7 +19,7 @@ void	ft_brag(int human_can_win)
 	else if (human_can_win == 1)
 		ft_putstr("I may let you win...if you are smart enough!\n");
 	else
-		ft_putstr("You must have cheated!!! There is no way you can beat me!\n");
+		ft_putstr("You must have cheated! There is no way you can beat me!\n");
 }
 
 void	print_get_strat(int *winning_strat)
@@ -38,5 +38,3 @@ void	print_get_strat(int *winning_strat)
 		i++;
 	}
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:07 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:18:54 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 16:03:08 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	int		*board;
 	char	*play;
 	t_bool	winner;
-//	int		*winning_strat;
+	int		*winning_strat;
 	
 	printf("=== start ===\n");
 	if ((fd = ft_get_fd(ac, av)) == -1)
@@ -71,13 +71,23 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	printf("=== get_board ===\n");
-//	winning_strat = ft_get_strat(board);
+	if (!(winning_strat = ft_get_strat(board)))
+	{
+		ft_memdel((void**)&board);
+		return (-1);
+	}
+	print_get_strat(winning_strat);
 	play = NULL;
 	while (1)
 	{
+		printf("=== new_turn ===\n");
 		ft_print_board(board);
+		get_next_line(0, &play);
 		while (ft_parse_play(board, play) == FALSE)
+		{
+			ft_memdel((void**)&play);
 			get_next_line(0, &play);
+		}
 		ft_actualise_board(board, ft_atoi(play));
 		ft_memdel((void**)&play);
 		winner = TRUE;
@@ -85,14 +95,16 @@ int	main(int ac, char **av)
 		if (board[0] == 0)
 			break ;
 		ft_print_board(board);
-//		ft_resolve_turn(board, winning_strat);
+		ft_resolve_turn(board, winning_strat);
 		winner = FALSE;
 		printf("=== turn_robot===\n");
 		if (board[0] == 0)
 			break ;
 	}
-//	ft_memdel((void**)&board);
-//	ft_memdel((void**)&winning_strat);
+	ft_memdel((void**)&board);
+	ft_memdel((void**)&winning_strat);
+	while (1)
+		;
 	if (winner == TRUE)
 		write(1, "alum1 won\n", 10);
 	else

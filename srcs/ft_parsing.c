@@ -6,13 +6,13 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:19:35 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 18:30:28 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 21:52:52 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alum1.h"
 
-int	ft_get_fd(int ac, char **av)
+int		ft_get_fd(int ac, char **av)
 {
 	if (ac > 2)
 		return (-1);
@@ -42,7 +42,7 @@ t_bool	ft_parse_play(int *board, char *s)
 	return (TRUE);
 }
 
-int	ft_error(int code, int *board, int fd)
+int		ft_error(int code, int *board, int fd)
 {
 	if (code == 1)
 		write(1, "ERROR: too many arguments\n", 26);
@@ -62,7 +62,7 @@ int	ft_error(int code, int *board, int fd)
 	return (-1);
 }
 
-int	ft_parse_player(char *str)
+int		ft_parse_player(char *str)
 {
 	if (ft_strlen(str) != 1 || (str[0] != '1' && str[0] != '2'))
 	{

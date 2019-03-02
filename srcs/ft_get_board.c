@@ -6,13 +6,13 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 19:34:19 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 22:02:40 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alum1.h"
 
-static int	*ft_resize_board(int *board, int *size)
+static int		*ft_resize_board(int *board, int *size)
 {
 	int	*tmp;
 	int i;
@@ -46,7 +46,7 @@ static t_bool	ft_parse_line(char *str)
 	return (TRUE);
 }
 
-int	*ft_get_board(int fd)
+int				*ft_get_board(int fd)
 {
 	int		*board;
 	char	*line;
@@ -60,15 +60,14 @@ int	*ft_get_board(int fd)
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (fd == 0 && *line == '\0')
-			break;
+			break ;
 		if (ft_parse_line(line) == FALSE)
 		{
 			ft_memdel((void**)&board);
 			ft_memdel((void**)&line);
 			return (NULL);
 		}
-		if (i == size)
-			board = ft_resize_board(board, &size);
+		board = (i == size) ? ft_resize_board(board, &size) : board;
 		board[i++] = ft_atoi(line);
 		ft_memdel((void**)&line);
 	}
@@ -76,7 +75,7 @@ int	*ft_get_board(int fd)
 	return ((board[0] != 0) ? board : NULL);
 }
 
-void ft_actualise_board(int *board, int play)
+void			ft_actualise_board(int *board, int play)
 {
 	int i;
 

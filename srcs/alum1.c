@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:07 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 19:38:11 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 21:56:13 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,22 @@ static void	ft_victory(int winner, int *board, int *winning_strat)
 	if (winner == TRUE)
 		write(1, "alum1 won\n", 10);
 	else
-		write(1, "human won\n",10);
+		write(1, "human won\n", 10);
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	int		fd;
 	int		*board;
 	char	*input;
-	int		*winning_strat;
+	int		*strat;
 	int		player_to_start;
-	
+
 	if ((fd = ft_get_fd(ac, av)) == -1)
 		return (ft_error(1, NULL, -1));
 	if ((board = ft_get_board(fd)) == NULL)
 		return (ft_error(2, NULL, fd));
-	if (!(winning_strat = ft_get_strat(board)))
+	if (!(strat = ft_get_strat(board)))
 		return (ft_error(3, board, fd));
 	ft_putstr("Do you want to play first or second ?\n");
 	get_next_line(0, &input);
@@ -103,8 +103,8 @@ int	main(int ac, char **av)
 	}
 	ft_memdel((void**)&input);
 	if (player_to_start == 1)
-		ft_victory(ft_human_first(board, winning_strat, input), board, winning_strat);
+		ft_victory(ft_human_first(board, strat, input), board, strat);
 	else
-		ft_victory(ft_robot_first(board, winning_strat, input), board, winning_strat);
+		ft_victory(ft_robot_first(board, strat, input), board, strat);
 	return (0);
 }

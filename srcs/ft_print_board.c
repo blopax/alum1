@@ -6,13 +6,13 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 13:05:49 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 15:04:13 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/02 21:53:33 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alum1.h"
 
-static void ft_write_a_line(int size)
+static void	ft_write_a_line(int size)
 {
 	char	str[size];
 	int		i;
@@ -26,7 +26,7 @@ static void ft_write_a_line(int size)
 	write(1, str, size);
 }
 
-void	ft_print_board(int *board)
+void		ft_print_board(int *board)
 {
 	int i;
 

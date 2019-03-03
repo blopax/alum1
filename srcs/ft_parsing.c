@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 17:19:35 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 21:52:52 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/03 16:36:52 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int		ft_get_fd(int ac, char **av)
 {
+	int fd;
+
 	if (ac > 2)
 		return (-1);
 	else if (ac == 1)
 		return (0);
 	else
-		return (open(av[1], O_RDONLY));
+	{
+		fd = open(av[1], O_RDONLY);
+		if (read(fd, NULL, 0) == -1)
+			return (-1);
+		else
+			return (fd);
+	}
 }
 
 t_bool	ft_parse_play(int *board, char *s)
@@ -45,7 +53,7 @@ t_bool	ft_parse_play(int *board, char *s)
 int		ft_error(int code, int *board, int fd)
 {
 	if (code == 1)
-		write(1, "ERROR: too many arguments\n", 26);
+		ft_putstr("ERROR: invalid argument or too many arguments\n");
 	if (code == 2)
 	{
 		write(1, "ERROR\n", 6);

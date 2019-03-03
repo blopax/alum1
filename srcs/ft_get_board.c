@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/03 21:23:36 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:28:42 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_bool	ft_parse_line(char *str)
 	return (TRUE);
 }
 
-static  int     *ft_return(int *board)
+static int		*ft_return(int *board)
 {
 	if (board[0] != 0)
 		return (board);
@@ -59,12 +59,12 @@ static  int     *ft_return(int *board)
 	}
 }
 
-int             *ft_get_board(int fd)
+int				*ft_get_board(int fd)
 {
-	int     *board;
-	char    *line;
-	int     size;
-	int     i;
+	int		*board;
+	char	*line;
+	int		size;
+	int		i;
 
 	size = 1;
 	if (!(board = ft_memalloc(sizeof(int) * (size + 1))))

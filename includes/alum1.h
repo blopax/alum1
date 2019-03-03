@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 11:38:31 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 18:16:58 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:28:04 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef enum
 {
 	FALSE,
 	TRUE
-} t_bool;
+}	t_bool;
 
 int		*ft_get_board(int fd);
 void	ft_print_board(int *board);

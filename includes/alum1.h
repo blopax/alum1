@@ -14,8 +14,13 @@
 # define ALUM1_H
 
 # include <fcntl.h>
-# include "libft.h"
-# include "get_next_line.h"
+# include "../libft/libft.h"
+
+typedef enum
+{
+	FALSE,
+	TRUE
+} t_bool;
 
 int		*ft_get_board(int fd);
 void	ft_print_board(int *board);

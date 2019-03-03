@@ -6,7 +6,7 @@
 /*   By: tdelabro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 12:54:26 by tdelabro          #+#    #+#             */
-/*   Updated: 2019/03/02 22:02:40 by tdelabro         ###   ########.fr       */
+/*   Updated: 2019/03/03 21:23:36 by tdelabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,28 @@ static t_bool	ft_parse_line(char *str)
 		i++;
 	if (str[i] == '\0')
 		return (FALSE);
+	if (ft_atoi(str) > 10000)
+		return (FALSE);
 	return (TRUE);
 }
 
-int				*ft_get_board(int fd)
+static  int     *ft_return(int *board)
 {
-	int		*board;
-	char	*line;
-	int		size;
-	int		i;
+	if (board[0] != 0)
+		return (board);
+	else
+	{
+		ft_memdel((void**)&board);
+		return (NULL);
+	}
+}
+
+int             *ft_get_board(int fd)
+{
+	int     *board;
+	char    *line;
+	int     size;
+	int     i;
 
 	size = 1;
 	if (!(board = ft_memalloc(sizeof(int) * (size + 1))))
@@ -72,7 +85,7 @@ int				*ft_get_board(int fd)
 		ft_memdel((void**)&line);
 	}
 	ft_memdel((void**)&line);
-	return ((board[0] != 0) ? board : NULL);
+	return (ft_return(board));
 }
 
 void			ft_actualise_board(int *board, int play)

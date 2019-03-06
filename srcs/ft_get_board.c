@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "alum1.h"
 
 static int		*ft_resize_board(int *board, int *size)
@@ -67,6 +68,7 @@ int				*ft_get_board(int fd)
 	int		i;
 
 	size = 1;
+	line = NULL;
 	if (!(board = ft_memalloc(sizeof(int) * (size + 1))))
 		return (NULL);
 	i = 0;

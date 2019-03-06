@@ -37,11 +37,9 @@ char		*result(char **line, char *tmp_str)
 	*line = ft_strnew(ft_check(tmp_str));
 	ft_strncpy(*line, (const char*)tmp_str, ft_check(tmp_str));
 	tmp = ft_strdup(tmp_str);
-	if (tmp_str)
-		free(tmp_str);
+	ft_memdel((void**)&tmp_str);
 	tmp_str = ft_strsub(tmp, ft_check(tmp) + 1, ft_strlen(tmp) - ft_check(tmp));
-	if (tmp)
-		free(tmp);
+	ft_memdel((void**)&tmp);
 	return (tmp_str);
 }
 
@@ -58,9 +56,9 @@ int			get_next_line(const int fd, char **line)
 	{
 		gnl.buf[gnl.ret] = '\0';
 		gnl.tmp = ft_strdup(tmp_str[fd]);
-		free(tmp_str[fd]);
+		ft_memdel((void**)&(tmp_str[fd]));
 		tmp_str[fd] = ft_strjoin(gnl.tmp, gnl.buf);
-		free(gnl.tmp);
+		ft_memdel((void**)&(gnl.tmp));
 		if (ft_check(tmp_str[fd]) != ft_strlen(tmp_str[fd]))
 			break ;
 	}
